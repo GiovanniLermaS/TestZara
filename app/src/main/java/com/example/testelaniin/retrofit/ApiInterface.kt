@@ -1,12 +1,12 @@
 package com.example.testelaniin.retrofit
 
-import com.example.testelaniin.model.Region
-import com.example.testelaniin.util.GET_REGIONS
+import com.example.testelaniin.model.Data
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiInterface {
 
-    @GET(GET_REGIONS)
-    fun getRegions(): Call<Region>
+    @GET("{url}")
+    fun getRegions(@Path("url") url: String): Call<Data>
 }

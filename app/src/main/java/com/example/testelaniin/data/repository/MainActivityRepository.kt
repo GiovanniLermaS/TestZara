@@ -1,6 +1,6 @@
 package com.example.testelaniin.data.repository
 
-import com.example.testelaniin.model.Region
+import com.example.testelaniin.model.Data
 import com.example.testelaniin.retrofit.ApiInterface
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import retrofit2.Call
@@ -10,17 +10,17 @@ import retrofit2.Response
 @ActivityRetainedScoped
 class MainActivityRepository(private val apiInterface: ApiInterface) : IMainActivityRepository {
 
-    override fun getRegions(response: (Region) -> Unit, error: (String?) -> Unit) {
-        val call = apiInterface.getRegions()
-        call.enqueue(object : Callback<Region> {
+    override fun getData(url: String, response: (Data) -> Unit, error: (String?) -> Unit) {
+        val call = apiInterface.getRegions(url)
+        call.enqueue(object : Callback<Data> {
             override fun onResponse(
-                call: Call<Region>,
-                response: Response<Region>
+                call: Call<Data>,
+                response: Response<Data>
             ) {
                 response.body()?.let { response(it) }
             }
 
-            override fun onFailure(call: Call<Region>, t: Throwable) {
+            override fun onFailure(call: Call<Data>, t: Throwable) {
                 t.message?.let { error(it) }
             }
 

@@ -1,6 +1,12 @@
 package com.example.testelaniin.model
 
-class Result(
-    var name: String,
-    var url: String,
-)
+import com.google.gson.annotations.SerializedName
+
+class Result {
+
+    @SerializedName("name")
+    var name: String? = ""
+
+    @SerializedName("url")
+    var url: String? = ""
+}

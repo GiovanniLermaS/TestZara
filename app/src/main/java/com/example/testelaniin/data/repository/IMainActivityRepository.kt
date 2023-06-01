@@ -1,10 +1,11 @@
 package com.example.testelaniin.data.repository
 
-import com.example.testelaniin.model.Region
+import com.example.testelaniin.model.Data
 
 interface IMainActivityRepository {
-    fun getRegions(
-        response: (Region) -> Unit,
+    fun getData(
+        url: String,
+        response: (Data) -> Unit,
         error: (String?) -> Unit
     )
 }
