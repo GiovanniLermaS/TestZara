@@ -10,8 +10,8 @@ import retrofit2.Response
 @ActivityRetainedScoped
 class MainActivityRepository(private val apiInterface: ApiInterface) : IMainActivityRepository {
 
-    override fun getData(url: String, response: (Data) -> Unit, error: (String?) -> Unit) {
-        val call = apiInterface.getRegions(url)
+    override fun getCharacters(page: Int, response: (Data) -> Unit, error: (String?) -> Unit) {
+        val call = apiInterface.getCharacters(page)
         call.enqueue(object : Callback<Data> {
             override fun onResponse(
                 call: Call<Data>,

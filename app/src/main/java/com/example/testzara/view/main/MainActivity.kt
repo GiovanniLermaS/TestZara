@@ -29,8 +29,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainActivityViewModel.getGroups()
-        mainActivityViewModel.data.observe(this){
+        mainActivityViewModel.getCharacters()
+        mainActivityViewModel.data.observe(this) {
             it
         }
         setContent {

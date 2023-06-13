@@ -8,9 +8,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 
-const val BASE_URL = "https://pokeapi.co/api/v2/"
-const val GET_REGIONS = "region"
-const val GET_GROUPS = "version-group"
+const val BASE_URL = "https://rickandmortyapi.com/api/"
+const val CHARACTERS = "character"
 
 fun hasNetwork(context: Context): Boolean? {
     var isConnected: Boolean? = false
