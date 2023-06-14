@@ -1,29 +1,32 @@
 package com.example.testzara.data.repository
 
 import com.example.testzara.model.Data
+import com.example.testzara.model.Episode
 import com.example.testzara.retrofit.ApiInterface
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @ActivityRetainedScoped
 class MainActivityRepository(private val apiInterface: ApiInterface) : IMainActivityRepository {
 
-    override fun getCharacters(page: Int, response: (Data) -> Unit, error: (String?) -> Unit) {
-        val call = apiInterface.getCharacters(page)
-        call.enqueue(object : Callback<Data> {
-            override fun onResponse(
-                call: Call<Data>,
-                response: Response<Data>
-            ) {
-                response.body()?.let { response(it) }
-            }
+    override suspend fun getCharacters(
+        page: Int,
+        response: (Data) -> Unit,
+        error: (String?) -> Unit
+    ) {
+        val characters = apiInterface.getCharacters(page)
+        if (characters.isSuccessful)
+            return response(characters.body() ?: throw Exception("Empty response body"))
+        else error(characters.message())
+    }
 
-            override fun onFailure(call: Call<Data>, t: Throwable) {
-                t.message?.let { error(it) }
-            }
-
-        })
+    override suspend fun getEpisode(
+        url: String,
+        response: (Episode) -> Unit,
+        error: (String?) -> Unit
+    ) {
+        val episode = apiInterface.getEpisode(url)
+        if (episode.isSuccessful)
+            return response(episode.body() ?: throw Exception("Empty response body"))
+        else error(episode.message())
     }
 }

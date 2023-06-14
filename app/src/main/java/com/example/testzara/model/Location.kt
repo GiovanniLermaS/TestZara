@@ -1,3 +1,9 @@
 package com.example.testzara.model
 
-data class Location(var name: String)
+import com.google.gson.annotations.SerializedName
+
+class Location {
+
+    @SerializedName("name")
+    var name: String? = null
+}

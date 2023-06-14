@@ -1,10 +1,29 @@
 package com.example.testzara.model
 
-data class Character(
-    var name: String,
-    var status: String,
-    var species: String,
-    var location: Location,
-    var image: String,
-    var episode: ArrayList<String>
-)
+import com.google.gson.annotations.SerializedName
+
+class Character {
+
+    @SerializedName("id")
+    var id: Int? = 0
+
+    @SerializedName("name")
+    var name: String? = null
+
+    @SerializedName("status")
+    var status: String? = null
+
+    @SerializedName("species")
+    var species: String? = null
+
+    @SerializedName("location")
+    var location = Location()
+
+    @SerializedName("image")
+    var image: String? = null
+
+    @SerializedName("episode")
+    var episode = ArrayList<String>()
+
+    var first_episode: String? = null
+}
