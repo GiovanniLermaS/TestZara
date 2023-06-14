@@ -13,20 +13,28 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.testzara.model.Character
 import com.example.testzara.ui.theme.testZaraTheme
 import com.example.testzara.view.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import testzara.R
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -43,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Characters()
+                    Loader()
                 }
             }
         }
@@ -51,16 +59,30 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Characters(mainViewModel: MainActivityViewModel = viewModel()) {
+fun Loader(mainViewModel: MainActivityViewModel = viewModel()) {
+    var isLoading by remember { mutableStateOf(true) }
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading))
+    val progress by animateLottieCompositionAsState(composition)
+    if (isLoading)
+        LottieAnimation(
+            composition = composition,
+            progress = { progress },
+        )
     mainViewModel.data.value?.let {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState())
-        ) {
-            CardView(it)
-        }
+        isLoading = false
+        Characters(it)
+    }
+}
+
+@Composable
+fun Characters(characters: ArrayList<Character>) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        CardView(characters)
     }
 }
 
@@ -102,10 +124,26 @@ fun CardView(
                         )
                         Row {
                             Image(
-                                painter = rememberAsyncImagePainter(character.image),
+                                rememberImagePainter(
+                                    ContextCompat.getDrawable(
+                                        LocalContext.current,
+                                        when (character.status?.lowercase()) {
+                                            stringResource(id = R.string.alive) -> {
+                                                R.drawable.ic_oval_alive
+                                            }
+                                            stringResource(id = R.string.dead) -> {
+                                                R.drawable.ic_oval_dead
+                                            }
+                                            else -> {
+                                                R.drawable.ic_oval_unknow
+                                            }
+                                        }
+                                    )
+                                ),
                                 contentDescription = "Dead - Alive",
                                 modifier = Modifier
-                                    .size(5.dp),
+                                    .padding(end = 5.dp)
+                                    .align(Alignment.CenterVertically)
                             )
                             Text(
                                 text = "${character.status} - ${character.species}",
@@ -146,6 +184,6 @@ fun CardView(
 @Composable
 fun DefaultPreview() {
     testZaraTheme {
-        Characters()
+        Loader()
     }
 }
