@@ -1,4 +1,4 @@
-package com.example.testzara.data.repository
+package com.example.testzara.data.repository.main
 
 import com.example.testzara.model.Data
 import com.example.testzara.model.Episode

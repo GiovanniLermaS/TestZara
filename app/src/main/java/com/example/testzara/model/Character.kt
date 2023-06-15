@@ -25,5 +25,5 @@ class Character {
     @SerializedName("episode")
     var episode = ArrayList<String>()
 
-    var first_episode: String? = null
+    var firstEpisode: String? = null
 }
