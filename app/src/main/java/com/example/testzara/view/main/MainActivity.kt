@@ -1,7 +1,7 @@
 package com.example.testzara.view.main
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -20,7 +21,7 @@ import androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -31,14 +32,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.testzara.model.Character
+import com.example.testzara.ui.composables.Loader
+import com.example.testzara.ui.composables.LoaderState
 import com.example.testzara.ui.theme.testZaraTheme
 import com.example.testzara.view.viewmodel.view.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,12 +58,27 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Column {
                         SearchField()
-                        Loader()
+                        Box {
+                            Loader()
+                            ResponseData()
+                        }
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+fun ResponseData(mainViewModel: MainActivityViewModel = viewModel()) {
+    val characters = mainViewModel.data.collectAsState().value
+    if (!characters.isNullOrEmpty()) {
+        LoaderState.isLoading = false
+        Characters(characters = characters)
+    }
+    val error = mainViewModel.error.collectAsState().value
+    if (!error.isNullOrEmpty())
+        Toast.makeText(LocalContext.current, error, Toast.LENGTH_LONG).show()
 }
 
 @Composable
@@ -98,44 +111,22 @@ fun SearchField(
         keyboardActions = KeyboardActions(onSearch = { focusManager.clearFocus() })
     )
     searchQuery?.let { query ->
-        val isFiltering: Boolean
         val filter = if (searchQuery == "") {
-            Log.e("Query", "" + searchQuery)
-            isFiltering = false
+            LoaderState.isLoading = true
             mainViewModel.data.value
         } else {
-            isFiltering = true
-            mainViewModel.data.value?.filter {
+            LoaderState.isLoading = false
+            mainViewModel.data.value.filter {
                 it.name?.lowercase()?.contains(query.lowercase()) == true
             }
         }
-        Characters(characters = filter as ArrayList<Character>, isFiltering)
-    }
-}
-
-@Composable
-fun Loader(mainViewModel: MainActivityViewModel = viewModel()) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading))
-    val progress by animateLottieCompositionAsState(composition)
-    if (mainViewModel.showProgress.value)
-        LottieAnimation(
-            composition = composition,
-            progress = { progress },
-            modifier = Modifier
-                .fillMaxSize()
-                .zIndex(1f)
-                .pointerInput(Unit) {}
-        )
-    mainViewModel.data.value?.let {
-        Characters(it, false)
+        Characters(characters = filter as ArrayList<Character>)
     }
 }
 
 @Composable
 fun Characters(
-    characters: ArrayList<Character>,
-    isFiltering: Boolean,
-    mainViewModel: MainActivityViewModel = viewModel()
+    characters: List<Character>
 ) {
     val lazyListState = rememberLazyListState()
     LazyColumn(
@@ -148,15 +139,23 @@ fun Characters(
             CardView(character)
         }
     }
-    val visibleItemCount = lazyListState.layoutInfo.visibleItemsInfo.size
-    val totalItemCount = lazyListState.layoutInfo.totalItemsCount
-    val lastVisibleItemIndex = lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+    lazyListState.OnBottomReached()
+}
 
-    if (visibleItemCount > 0
-        && lastVisibleItemIndex == totalItemCount - 1
-        && !mainViewModel.showProgress.value
-        && !isFiltering
-    ) mainViewModel.getCharacters()
+@Composable
+fun LazyListState.OnBottomReached(
+    viewModel: MainActivityViewModel = viewModel()
+) {
+    val shouldLoadMore = remember {
+        derivedStateOf {
+            layoutInfo.visibleItemsInfo.isNotEmpty() &&
+                    layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+        }
+    }
+    if (shouldLoadMore.value) {
+        LoaderState.isLoading = true
+        viewModel.getCharacters()
+    }
 }
 
 @Composable
@@ -244,7 +243,7 @@ fun CardView(character: Character) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DefaultPreview(mainViewModel: MainActivityViewModel = viewModel()) {
     testZaraTheme {
         Loader()
     }
