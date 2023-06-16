@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -40,6 +41,7 @@ import com.example.testzara.ui.composables.LoaderState
 import com.example.testzara.ui.theme.testZaraTheme
 import com.example.testzara.view.viewmodel.view.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import testzara.R
 
 @AndroidEntryPoint
@@ -129,14 +131,19 @@ fun Characters(
     characters: List<Character>
 ) {
     val lazyListState = rememberLazyListState()
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        state = lazyListState
+    val scaffoldState = rememberScaffoldState()
+    Scaffold(
+        scaffoldState = scaffoldState,
     ) {
-        items(characters) { character ->
-            CardView(character)
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            state = lazyListState
+        ) {
+            items(characters) { character ->
+                CardView(character, scaffoldState)
+            }
         }
     }
     lazyListState.OnBottomReached()
@@ -159,14 +166,23 @@ fun LazyListState.OnBottomReached(
 }
 
 @Composable
-fun CardView(character: Character) {
+fun CardView(character: Character, scaffoldState: ScaffoldState) {
+    val coroutine = rememberCoroutineScope()
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
-            .padding(bottom = 16.dp),
+            .padding(bottom = 16.dp)
+            .clickable {
+                coroutine.launch {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        "${character.name} \n \"${character.firstEpisode}",
+                        null
+                    )
+                }
+            },
         shape = RoundedCornerShape(8.dp),
-        elevation = 4.dp,
+        elevation = 4.dp
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
