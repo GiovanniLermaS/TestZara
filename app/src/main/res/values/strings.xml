@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">TestKoombea</string>
-    <string name="last_know_location">Last known location:</string>
-    <string name="first_seen_in">First seen in:</string>
-    <string name="alive">alive</string>
-    <string name="dead">dead</string>
-    <string name="title_activity_details">DetailsActivity</string>
-</resources>

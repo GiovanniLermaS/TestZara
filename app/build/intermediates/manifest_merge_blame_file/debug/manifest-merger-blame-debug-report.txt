@@ -1,0 +1,163 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.testinditex"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:6:5-79
+12-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:6:22-76
+13
+14    <permission
+14-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:22:5-24:47
+15        android:name="com.example.testinditex.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+15-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:23:9-81
+16        android:protectionLevel="signature" />
+16-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:24:9-44
+17
+18    <uses-permission android:name="com.example.testinditex.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+18-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:26:22-94
+19
+20    <application
+20-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:8:5-30:19
+21        android:name="com.example.testZaraRealm.application.MyApplication"
+21-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:9:9-75
+22        android:allowBackup="true"
+22-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:10:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.12.0-alpha05] /Users/juanoelbanano/.gradle/caches/transforms-3/fdd51f0e90c1cd04e318e71220e61eba/transformed/core-1.12.0-alpha05/AndroidManifest.xml:28:18-86
+24        android:dataExtractionRules="@xml/data_extraction_rules"
+24-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:11:9-65
+25        android:debuggable="true"
+26        android:extractNativeLibs="false"
+27        android:fullBackupContent="@xml/backup_rules"
+27-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:12:9-54
+28        android:icon="@mipmap/ic_launcher"
+28-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:13:9-43
+29        android:label="@string/app_name"
+29-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:14:9-41
+30        android:roundIcon="@mipmap/ic_launcher_round"
+30-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:15:9-54
+31        android:supportsRtl="true"
+31-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:16:9-35
+32        android:theme="@style/Theme.TestZaraRealm" >
+32-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:17:9-51
+33        <activity
+33-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:19:9-29:20
+34            android:name="com.example.testZaraRealm.view.main.MainActivity"
+34-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:20:13-76
+35            android:exported="true"
+35-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:21:13-36
+36            android:label="@string/app_name"
+36-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:22:13-45
+37            android:theme="@style/Theme.TestZaraRealm" >
+37-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:23:13-55
+38            <intent-filter>
+38-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:24:13-28:29
+39                <action android:name="android.intent.action.MAIN" />
+39-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:25:17-69
+39-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:25:25-66
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:27:17-77
+41-->/Users/juanoelbanano/StudioProjects/TestZaraRealm/app/src/main/AndroidManifest.xml:27:27-74
+42            </intent-filter>
+43        </activity>
+44
+45        <provider
+45-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:27:9-35:20
+46            android:name="androidx.startup.InitializationProvider"
+46-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:28:13-67
+47            android:authorities="com.example.testinditex.androidx-startup"
+47-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:29:13-68
+48            android:exported="false" >
+48-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:30:13-37
+49            <meta-data
+49-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:32:13-34:52
+50                android:name="io.realm.kotlin.internal.RealmInitializer"
+50-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:33:17-73
+51                android:value="androidx.startup" />
+51-->[io.realm.kotlin:cinterop-android:1.8.0] /Users/juanoelbanano/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml:34:17-49
+52            <meta-data
+52-->[androidx.emoji2:emoji2:1.3.0] /Users/juanoelbanano/.gradle/caches/transforms-3/0ef9804c575f98521e04c147ac4b8b76/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+53-->[androidx.emoji2:emoji2:1.3.0] /Users/juanoelbanano/.gradle/caches/transforms-3/0ef9804c575f98521e04c147ac4b8b76/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+54                android:value="androidx.startup" />
+54-->[androidx.emoji2:emoji2:1.3.0] /Users/juanoelbanano/.gradle/caches/transforms-3/0ef9804c575f98521e04c147ac4b8b76/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+55            <meta-data
+55-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/juanoelbanano/.gradle/caches/transforms-3/81ca41beb36334a472149af12ce51ceb/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+56-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/juanoelbanano/.gradle/caches/transforms-3/81ca41beb36334a472149af12ce51ceb/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+57                android:value="androidx.startup" />
+57-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/juanoelbanano/.gradle/caches/transforms-3/81ca41beb36334a472149af12ce51ceb/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+58            <meta-data
+58-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+59                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+59-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+60                android:value="androidx.startup" />
+60-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+61        </provider>
+62
+63        <activity
+63-->[androidx.compose.ui:ui-test-manifest:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/cf058bb1285916571c6428d2cd773f55/transformed/ui-test-manifest-1.4.3/AndroidManifest.xml:23:9-25:39
+64            android:name="androidx.activity.ComponentActivity"
+64-->[androidx.compose.ui:ui-test-manifest:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/cf058bb1285916571c6428d2cd773f55/transformed/ui-test-manifest-1.4.3/AndroidManifest.xml:24:13-63
+65            android:exported="true" />
+65-->[androidx.compose.ui:ui-test-manifest:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/cf058bb1285916571c6428d2cd773f55/transformed/ui-test-manifest-1.4.3/AndroidManifest.xml:25:13-36
+66        <activity
+66-->[androidx.compose.ui:ui-tooling:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/257aabfd52b7ec6d40f667be6e98bf47/transformed/ui-tooling-1.4.3/AndroidManifest.xml:23:9-25:39
+67            android:name="androidx.compose.ui.tooling.PreviewActivity"
+67-->[androidx.compose.ui:ui-tooling:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/257aabfd52b7ec6d40f667be6e98bf47/transformed/ui-tooling-1.4.3/AndroidManifest.xml:24:13-71
+68            android:exported="true" />
+68-->[androidx.compose.ui:ui-tooling:1.4.3] /Users/juanoelbanano/.gradle/caches/transforms-3/257aabfd52b7ec6d40f667be6e98bf47/transformed/ui-tooling-1.4.3/AndroidManifest.xml:25:13-36
+69
+70        <receiver
+70-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+71            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+71-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+72            android:directBootAware="false"
+72-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+73            android:enabled="true"
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+74            android:exported="true"
+74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+75            android:permission="android.permission.DUMP" >
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+76            <intent-filter>
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+77                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+77-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+77-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+78            </intent-filter>
+79            <intent-filter>
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+80                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+81            </intent-filter>
+82            <intent-filter>
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+83                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+84            </intent-filter>
+85            <intent-filter>
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+86                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/juanoelbanano/.gradle/caches/transforms-3/b5af5ea4c975d14159b4e495c1b18189/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+87            </intent-filter>
+88        </receiver>
+89    </application>
+90
+91</manifest>
