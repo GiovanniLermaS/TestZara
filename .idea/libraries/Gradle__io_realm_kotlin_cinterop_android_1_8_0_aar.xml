@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: io.realm.kotlin:cinterop-android:1.8.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f8bcd0308c3ea9bdde92dabe9e7c6d05/transformed/cinterop-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm.kotlin/cinterop-android/1.8.0/e10f00492c6af0d6dbda2bdf518540af565c48d8/cinterop-android-1.8.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm.kotlin/cinterop-android/1.8.0/943da9f742ad2551567813a15a554b583b8d1542/cinterop-android-1.8.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

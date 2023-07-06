@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: org.mongodb.kbson:kbson-android-debug:0.2.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6713b595f97659d6c4e5b9f214b8f579/transformed/kbson-debug/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6713b595f97659d6c4e5b9f214b8f579/transformed/kbson-debug/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mongodb.kbson/kbson-android-debug/0.2.0/b63791b68ba77e03ba248b42328dfe1c36c403c6/kbson-android-debug-0.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mongodb.kbson/kbson-android-debug/0.2.0/4a3eed1b1efdbec493d0069c9066b171e14c0da2/kbson-android-debug-0.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
