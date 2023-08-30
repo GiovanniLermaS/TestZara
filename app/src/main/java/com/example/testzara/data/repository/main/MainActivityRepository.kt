@@ -1,8 +1,8 @@
 package com.example.testzara.data.repository.main
 
-import com.example.testzara.model.Data
-import com.example.testzara.model.Episode
-import com.example.testzara.retrofit.ApiInterface
+import com.example.testzara.data.model.Data
+import com.example.testzara.data.model.Episode
+import com.example.testzara.infrastructure.retrofit.ApiInterface
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 
 @ActivityRetainedScoped
