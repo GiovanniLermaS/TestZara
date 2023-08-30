@@ -1,5 +1,6 @@
 package com.example.testzara.view.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -19,9 +20,13 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
@@ -35,28 +40,38 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
+import com.example.testzara.R
 import com.example.testzara.model.Character
 import com.example.testzara.ui.composables.Loader
 import com.example.testzara.ui.composables.LoaderState
-import com.example.testzara.ui.theme.testZaraTheme
+import com.example.testzara.ui.composables.SnackBarData
+import com.example.testzara.ui.theme.TestZaraTheme
+import com.example.testzara.util.SnackbarVisualsWithError
 import com.example.testzara.view.viewmodel.view.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import testzara.R
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivityViewModel.getCharacters()
         setContent {
-            testZaraTheme {
-                Surface(
+            TestZaraTheme {
+                val snackBarHostState = remember { SnackbarHostState() }
+                Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    snackbarHost = {
+                        androidx.compose.material3.SnackbarHost(snackBarHostState) { data ->
+                            SnackBarData(
+                                data = data
+                            )
+                        }
+                    }
                 ) {
                     Column {
                         SearchField()
@@ -74,7 +89,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ResponseData(mainViewModel: MainActivityViewModel = viewModel()) {
     val characters = mainViewModel.data.collectAsState().value
-    if (!characters.isNullOrEmpty()) {
+    if (characters.isNotEmpty()) {
         LoaderState.isLoading = false
         Characters(characters = characters)
     }
@@ -131,19 +146,15 @@ fun Characters(
     characters: List<Character>
 ) {
     val lazyListState = rememberLazyListState()
-    val scaffoldState = rememberScaffoldState()
-    Scaffold(
-        scaffoldState = scaffoldState,
+    val snackBarHostState = remember { SnackbarHostState() }
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        state = lazyListState
     ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            state = lazyListState
-        ) {
-            items(characters) { character ->
-                CardView(character, scaffoldState)
-            }
+        items(characters) { character ->
+            CardView(character, snackBarHostState)
         }
     }
     lazyListState.OnBottomReached()
@@ -165,28 +176,34 @@ fun LazyListState.OnBottomReached(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardView(character: Character, scaffoldState: ScaffoldState) {
+fun CardView(character: Character, snackBarHostState: SnackbarHostState) {
     val coroutine = rememberCoroutineScope()
-    Card(
+    androidx.compose.material3.Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
             .padding(bottom = 16.dp)
             .clickable {
                 coroutine.launch {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        "${character.name} \n \"${character.firstEpisode}",
-                        null
+                    snackBarHostState.showSnackbar(
+                        SnackbarVisualsWithError(
+                            character.name ?: "",
+                            false
+                        )
                     )
                 }
             },
         shape = RoundedCornerShape(8.dp),
-        elevation = 4.dp
+        elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.DarkGray,
+        ),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
                 painter = rememberAsyncImagePainter(character.image),
@@ -201,7 +218,7 @@ fun CardView(character: Character, scaffoldState: ScaffoldState) {
                     .weight(1f)
             ) {
                 Column(modifier = Modifier.padding(bottom = 10.dp)) {
-                    Text(
+                    androidx.compose.material3.Text(
                         text = character.name ?: "",
                         fontSize = 25.sp,
                         color = colorResource(id = R.color.white),
@@ -222,7 +239,7 @@ fun CardView(character: Character, scaffoldState: ScaffoldState) {
                                 )
                                 .align(Alignment.CenterVertically)
                         )
-                        Text(
+                        androidx.compose.material3.Text(
                             text = "${character.status} - ${character.species}",
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.white),
@@ -231,22 +248,22 @@ fun CardView(character: Character, scaffoldState: ScaffoldState) {
                     }
                 }
                 Column(modifier = Modifier.padding(bottom = 10.dp)) {
-                    Text(
+                    androidx.compose.material3.Text(
                         text = stringResource(R.string.last_know_location),
                         color = colorResource(id = R.color.gray)
                     )
-                    Text(
+                    androidx.compose.material3.Text(
                         text = character.location.name ?: "",
                         fontSize = 13.sp,
                         color = colorResource(id = R.color.white)
                     )
                 }
                 Column(modifier = Modifier.padding(bottom = 10.dp)) {
-                    Text(
+                    androidx.compose.material3.Text(
                         text = stringResource(R.string.first_seen_in),
                         color = colorResource(id = R.color.gray)
                     )
-                    Text(
+                    androidx.compose.material3.Text(
                         text = character.firstEpisode ?: "",
                         fontSize = 13.sp,
                         color = colorResource(id = R.color.white)
@@ -260,7 +277,7 @@ fun CardView(character: Character, scaffoldState: ScaffoldState) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview(mainViewModel: MainActivityViewModel = viewModel()) {
-    testZaraTheme {
+    TestZaraTheme {
         Loader()
     }
 }

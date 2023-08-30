@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.zIndex
 import com.airbnb.lottie.compose.*
-import testzara.R
+import com.example.testzara.R
 
 object LoaderState {
     private val _isLoading = mutableStateOf(true)
