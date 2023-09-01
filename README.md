@@ -1,6 +1,6 @@
 # TestZara
 
-This test is done with Retrofit, Hilt, Lottie, Jetpack Compose, and MVVM architecture.
+This test is done with Retrofit, Hilt, Lottie, Jetpack Compose, Clean Architecture and MVVM architecture.
 
 In the code, you can see different folders for separating the logic by applying the aforementioned architecture, with the view, the repository, the view model, and so on.
 
@@ -15,4 +15,4 @@ Steps:
 
 Video attached.
 
-https://drive.google.com/file/d/1NbYLn9R1WW6IM0MV-QOQkZfezYcEella/view?usp=sharing
+https://drive.google.com/file/d/1px4CmcR35W-y1QedhoDqhzu7Xjavo8WW/view?usp=drive_link
