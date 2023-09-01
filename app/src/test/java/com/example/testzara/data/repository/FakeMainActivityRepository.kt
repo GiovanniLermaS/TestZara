@@ -1,7 +1,7 @@
 package com.example.testzara.data.repository
 
-import com.example.testzara.data.model.Data
-import com.example.testzara.data.model.Episode
+import com.example.testzara.domain.Data
+import com.example.testzara.domain.Episode
 import com.example.testzara.data.repository.main.IMainActivityRepository
 import com.google.gson.Gson
 

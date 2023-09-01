@@ -1,9 +1,9 @@
-package com.example.testzara.data.repository.main
+package com.example.testzara.usecases.character
 
 import com.example.testzara.domain.Data
 import com.example.testzara.domain.Episode
 
-interface IMainActivityRepository {
+interface GetCharacterUseCase {
     suspend fun getCharacters(
         page: Int,
         response: (Data) -> Unit,
